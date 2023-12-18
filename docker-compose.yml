@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  db-user:
+    image: 'postgres:13.1-alpine'
+    container_name: db-user
+    environment:
+      - POSTGRES_USER=users
+      - POSTGRES_PASSWORD=users-123456
+      - POSTGRES_DB=ms_users
+    ports:
+      - "5432:5432"
+  ms-user:
+    image: 'ms-user:latest'
+    build:
+      context: .
+    container_name: ms-user
+    depends_on:
+      - db-user
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-user:5432/ms_users
+      - SPRING_DATASOURCE_USERNAME=users
+      - SPRING_DATASOURCE_PASSWORD=users-123456
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "6090:6090"
