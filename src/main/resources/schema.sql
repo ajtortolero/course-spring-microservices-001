@@ -4,5 +4,6 @@ CREATE TABLE IF NOT EXISTS users(
     lastName VARCHAR(80),
     email VARCHAR(80),
     login VARCHAR(80),
-    password VARCHAR(60)
+    password VARCHAR(60),
+    role VARCHAR(60)
 );
