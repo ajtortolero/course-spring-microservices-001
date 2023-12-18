@@ -2,6 +2,7 @@ package edu.microservices.user.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -13,4 +14,6 @@ import org.springframework.context.annotation.Configuration;
             )
         )
 public class SwaggerConfig {
+    @Value("${app.version}")
+    private String appVersion;
 }
